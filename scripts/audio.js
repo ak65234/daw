@@ -37,3 +37,28 @@ class Node {
         return this;
     }
 }
+
+class Gain extends Node {
+    /** @type {GainNode} */
+    #gain;
+
+    /** @param {AudioContext} ctx */
+    constructor(ctx) {
+        const gain = ctx.createGain();
+        super(gain);
+        this.#gain = gain;
+    }
+
+    /**
+     * @param {number} value
+     * @param {number} time Time in seconds
+     */
+    gain(value, time = 0) {
+        if (typeof value !== "number")
+            return this.#gain.gain.value;
+        else
+            this.#gain.gain.setValueAtTime(value, time)
+
+        return this;
+    }
+}
