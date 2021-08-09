@@ -61,6 +61,16 @@ class Gain extends Node {
 
         return this;
     }
+
+    /**
+     * @param {number} value
+     * @param {number} time Time in seconds
+     */
+    linearAutomation(value, time) {
+        this.#gain.gain.linearRampToValueAtTime(value, time)
+
+        return this;
+    }
 }
 
 class Oscillator extends Node {
