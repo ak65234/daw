@@ -97,9 +97,12 @@ class Oscillator extends Node {
         return this;
     }
 
-    /** @param {number} frequency */
-    freq(frequency) {
-        this.#osc.frequency.value = frequency;
+    /**
+     * @param {number} frequency
+     * @param {number} time Time in seconds
+     */
+    freq(frequency, time = 0) {
+        this.#osc.frequency.setValueAtTime(frequency, time);
 
         return this;
     }
