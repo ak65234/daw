@@ -23,16 +23,22 @@ class Node {
         return this;
     }
 
-    /** @param {AudioDestinationNode} dest */
+    /** @param {AudioDestinationNode|Node} dest */
     connect(dest) {
-        this.#node.connect(dest);
+        if (dest instanceof Node)
+            dest.add(this)
+        else
+            this.#node.connect(dest);
 
         return this;
     }
 
-    /** @param {AudioDestinationNode} dest */
+    /** @param {AudioDestinationNode|Node} dest */
     disconnect(dest) {
-        this.#node.disconnect(dest);
+        if (dest instanceof Node)
+            dest.remove(this)
+        else
+            this.#node.disconnect(dest);
 
         return this;
     }
